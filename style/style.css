@@ -1,3 +1,7 @@
+body {
+    background-color: aqua;
+}
+
 #flex {
     display: flex;
     justify-content: space-around;
@@ -11,3 +15,8 @@
     margin: 25px;
 }
 
+.header {
+    text-align: center;
+    color: white;
+    background-color: black;
+}

@@ -82,14 +82,32 @@ let data = [
 ]
 
 var options = document.getElementById("flex")
-colors = []
-for (var i = 0;i < 4;i++) {
-    do {
-        var ind = Math.round(Math.random()*9)
-    } while(colors.includes(ind))
-    colors.push(ind)
-    var box = document.createElement("div")
-    box.setAttribute("style",`background-color: ${Object.keys(data[ind])[0]}`)
-    box.setAttribute("class","flexBox")
-    options.appendChild(box)
+var q = document.getElementById("q")
+var colors = []
+var i = 0
+var randomOptions = []
+
+function loadQuestion() {
+    q.innerHTML += Object.keys(data[colors[i]])[0]
+    for (var j = 0; j < 4; j++) {
+        do {
+            var ind = Math.round(Math.random() * 3)
+        } while (randomOptions.includes(ind))
+        randomOptions.push(ind)
+        var box = document.createElement("div")
+        box.setAttribute("style", `background-color: ${Object.values(data[colors[i]])[0][randomOptions[j]]
+}`)
+        box.setAttribute("class", "flexBox")
+        options.appendChild(box)
+    }
+}
+
+function loadData() {
+    for (var j = 0; j < 5; j++) {
+        do {
+            var ind = Math.round(Math.random() * 9)
+        } while (colors.includes(ind))
+        colors.push(ind)
+    }
+    loadQuestion()
 }
