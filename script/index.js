@@ -86,9 +86,26 @@ var q = document.getElementById("q")
 var colors = []
 var i = 0
 var randomOptions = []
+var correct = 0
+
+function checkingTheResponse(res) {
+    if (res == Object.values(data[colors[i]])[0][3]) {
+        correct += 1
+    }
+    if (i == 4) {
+        q.innerHTML = ""
+        options.innerHTML = `<h1 style="color: grey">Your result is: - ${correct}/5</h1>`
+        return
+    }
+    i += 1
+    q.innerHTML = ""
+    options.innerHTML = ""
+    randomOptions = []
+    loadQuestion()
+}
 
 function loadQuestion() {
-    q.innerHTML += Object.keys(data[colors[i]])[0]
+    q.innerHTML = Object.keys(data[colors[i]])[0]
     for (var j = 0; j < 4; j++) {
         do {
             var ind = Math.round(Math.random() * 3)
@@ -98,6 +115,7 @@ function loadQuestion() {
         box.setAttribute("style", `background-color: ${Object.values(data[colors[i]])[0][randomOptions[j]]
 }`)
         box.setAttribute("class", "flexBox")
+        box.setAttribute("onclick",`checkingTheResponse('${Object.values(data[colors[i]])[0][randomOptions[j]]}')`)
         options.appendChild(box)
     }
 }
